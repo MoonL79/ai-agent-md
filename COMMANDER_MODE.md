@@ -44,6 +44,16 @@
 - 对排障任务，必须要求先定位、再验证、再修改。
 - Claude 完成任务后，必须检查结果是否真正解决原问题，而不是只完成表面动作。
 
+## Claude 调用规则
+
+- 默认推荐的 Claude 调度方式是 `claude --print --verbose --output-format stream-json`。
+- `claude --print` 可用于极小、单轮、无需持续监控的查询任务。
+- 默认禁止使用交互式 TUI 作为 Claude 的调度方式。
+- 默认禁止使用长驻 PTY 加 stdio 的 Claude 交互方式。
+- 默认禁止使用 `claude --bare`。
+- Codex 调度 Claude 时，应优先以 `stream-json` 事件流为准，重点监控初始化事件、中间消息和最终 `result` 事件。
+- 若未来需要恢复被禁止的调用方式，必须由用户显式解除限制，而不是由 Codex 自行决定。
+
 ## 介入条件
 
 出现以下任一情况时，Codex 应介入：
